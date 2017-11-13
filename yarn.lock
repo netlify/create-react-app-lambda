@@ -4217,9 +4217,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-netlify-lambda@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/netlify-lambda/-/netlify-lambda-0.0.1.tgz#3c4967afd0252ccb60041b8c9223f0f4faf2a731"
+netlify-lambda@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/netlify-lambda/-/netlify-lambda-0.1.0.tgz#7993b7dff0fa93b1b99576d453e7dd79e78790d5"
   dependencies:
     babel-plugin-transform-class-properties "^6.24.1"
     babel-plugin-transform-object-assign "^6.22.0"
