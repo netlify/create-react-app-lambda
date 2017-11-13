@@ -1,0 +1,27 @@
+{
+  "name": "react-lambda",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "netlify-lambda": "^0.0.1",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start:lambda": "netlify-lambda serve src/lambda",
+    "build": "react-scripts build",
+    "build:lambda": "netlify-lambda build src/lambda",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
+  }
+}
