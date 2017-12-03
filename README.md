@@ -1,70 +1,37 @@
-This project is based on [Create React App](https://github.com/facebookincubator/create-react-app).
+This project is based on [Create React App](https://github.com/facebookincubator/create-react-app). (For more information about Create react App, check their full [documentation](https://github.com/facebookincubator/create-react-app#create-react-app).)
 
-You can follow the docs there to see the full docs on Create React App.
-
-The main addition is a new folder: `src/lambda`. Each js file in there will automatically be deployed and routed as an AWS lambda function by Netlify's continuous deployments.
+The main addition is a new folder: `src/lambda`. Each JavaScript file in there will automatically be prepared for Lambda function deployment.
 
 As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`.
 
-Each function must export a `handler( event, context, callback )` (eaxtly as if the Lambda had been configured with AWS's API Gateway).
+## Babel/webpack compilation
 
-The event object looks like:
-
-```js
-{
-    "path": "/.netlify/functions/hello",
-    "httpMethod": "GET"
-    "headers": {...}
-    "queryStringParameters": {...}
-    "body": "Request Body"
-    "isBase64Encoded": "A boolean flag to indicate if the applicable request payload is Base64-encode"
-}
-```
-
-our handler should use the callback to return either an error (as the first parameter) or a response object:
-
-```js
-{
-    "isBase64Encoded": true|false,
-    "statusCode": httpStatusCode,
-    "headers": { "headerName": "headerValue", ... },
-    "body": "..."
-}
-```
-
-Here’s a simple example function `hello.js`:
-
-```js
-exports.handler = function(event, context, callback) {
-  callback(null, {
-    statusCode: 200,
-    body: "Hello, World"
-  });
-}
-```
-
-## Babel/Webpack compilation
-
-All functions are compiled with webpack using the Babel Loader, so you can use modern JS, import npm modules, etc, without any extra setup.
+All functions are compiled with webpack using the Babel Loader, so you can use modern JavaScript, import npm modules, etc., without any extra setup.
 
 ## Local Development
 
-Before developing, clone the repository and run `yarn` from the root of the repo.
+Before developing, clone the repository and run `yarn` from the root of the repo to install all dependencies.
 
-Then open one terminal tab and run:
+### Run the functions dev server
 
-```
-yarn start
-```
-
-This will start the normal create-react-app dev server and open your app at `http://localhost:3000`
-
-Then open a separate terminal tab and run:
+From inside the project folder, run:
 
 ```
 yarn start:lambda
 ```
 
-This will open a local server running at `http://localhost:9000` serving your lambda functions.
+This will open a local server running at `http://localhost:9000` serving your Lambda functions, updating as you make changes in the `src/lambda` folder.
 
-Requests to `http://localhost:3000/.netlify/functions/*` will automatically be proxied to the lambda dev server.
+You can then access your functions directly at `http://localhost:9000/{function_name}`, but to access them with the app, you'll need to start the app dev server.
+
+### Run the app dev server
+
+While the functions server is still running, open a new terminal tab and run:
+
+```
+yarn start
+```
+
+This will start the normal create-react-app dev server and open your app at `http://localhost:3000`.
+
+Local in-app requests to the relative path `/.netlify/functions/*` will automatically be proxied to the local functions dev server.
