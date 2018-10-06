@@ -1,6 +1,6 @@
 {
   "name": "react-lambda",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
