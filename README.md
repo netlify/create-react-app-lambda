@@ -31,7 +31,7 @@ You can then access your functions directly at `http://localhost:9000/{function_
 While the functions server is still running, open a new terminal tab and run:
 
 ```
-yarn start
+yarn start:app
 ```
 
 This will start the normal create-react-app dev server and open your app at `http://localhost:3000`.
