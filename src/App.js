@@ -8,12 +8,12 @@ import './App.css';
 import { createFetcher } from './cache';
 
 const DataResource = createFetcher(() =>
-  fetch(`/.netlify/functions/hello?q=1`).then(x => x.json())
+  fetch(`/.netlify/functions/hello`).then(x => x.json())
 );
 
 function LambdaDemo() {
-  const msg = DataResource.read();
-  return <p>{JSON.stringify(msg)}</p>;
+  const msg = DataResource.read().msg;
+  return <p>{msg}</p>;
 }
 
 class App extends Component {
