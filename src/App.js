@@ -19,19 +19,19 @@ function LambdaDemo() {
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <ConcurrentMode>
-            <Suspense maxDuration={5000} fallback={'Loading...'}>
+      <ConcurrentMode>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Edit <code>src/App.js</code> and save to reload.
+            </p>
+            <Suspense maxDuration={1000} fallback={'Loading...'}>
               <LambdaDemo />
             </Suspense>
-          </ConcurrentMode>
-        </header>
-      </div>
+          </header>
+        </div>
+      </ConcurrentMode>
     );
   }
 }
