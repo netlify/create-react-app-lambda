@@ -14,7 +14,19 @@ All functions are compiled with webpack using the Babel Loader, so you can use m
 
 Before developing, clone the repository and run `yarn` from the root of the repo to install all dependencies.
 
-### Run the functions dev server
+### Option 1: Starting both servers at once
+
+Most people should be able to get up and running just by running:
+
+```bash
+yarn start
+```
+
+This uses [npm-run-all](https://github.com/mysticatea/npm-run-all#readme) to run the functions dev server and app dev server concurrently.
+
+### Option 2: Start each server individually
+
+**Run the functions dev server**
 
 From inside the project folder, run:
 
@@ -26,7 +38,7 @@ This will open a local server running at `http://localhost:9000` serving your La
 
 You can then access your functions directly at `http://localhost:9000/{function_name}`, but to access them with the app, you'll need to start the app dev server. Under the hood, this uses `react-scripts`' [advanced proxy feature](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) with the `setupProxy.js` file.
 
-### Run the app dev server
+**Run the app dev server**
 
 While the functions server is still running, open a new terminal tab and run:
 
