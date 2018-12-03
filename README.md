@@ -50,6 +50,46 @@ This will start the normal create-react-app dev server and open your app at `htt
 
 Local in-app requests to the relative path `/.netlify/functions/*` will automatically be proxied to the local functions dev server.
 
+<detail>
+  <summary>
+    <b>Typescript</b>
+  </summary>
+You can use Typescript in both your React code (with `react-scripts` v2.1+) and your lambda functions )with `netlify-lambda` v1.1+). Follow these instructions:
+
+1. `yarn add -D typescript @types/node @types/react @types/react-dom @babel/preset-typescript @types/aws-lambda`
+2. convert `src/lambda/hello.js` to `src/lambda/hello.ts`
+3. use types in your event handler:
+
+```ts
+import { Handler, Context, Callback } from 'aws-lambda';
+
+interface HelloResponse {
+  statusCode: number;
+  body: string;
+}
+
+const handler: Handler = (event: any, context: Context, callback: Callback) => {
+  const response: HelloResponse = {
+    statusCode: 200,
+    body: JSON.stringify({
+      msg: `Hello world ${Math.floor(Math.random() * 10)}`
+    })
+  };
+
+  callback(undefined, response);
+};
+
+export { handler };
+
+```
+
+rerun and see it work!
+
+You are free to set up your `tsconfig.json` and `tslint` as you see fit.
+
+</detail>
+
+
 ## Service Worker
 
 The service worker does not work with lambda functions out of the box. It prevents calling the function and returns the app itself instead ([Read more](https://github.com/facebook/create-react-app/issues/2237#issuecomment-302693219)). To solve this you have to eject and enhance the service worker configuration in the webpack config. Whitelist the path of your lambda function and you are good to go.
