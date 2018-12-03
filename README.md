@@ -50,9 +50,9 @@ This will start the normal create-react-app dev server and open your app at `htt
 
 Local in-app requests to the relative path `/.netlify/functions/*` will automatically be proxied to the local functions dev server.
 
-<detail>
+<details>
   <summary>
-    <b>Typescript</b>
+    <b id="typescript">Typescript</b>
   </summary>
 You can use Typescript in both your React code (with `react-scripts` v2.1+) and your lambda functions )with `netlify-lambda` v1.1+). Follow these instructions:
 
@@ -80,15 +80,13 @@ const handler: Handler = (event: any, context: Context, callback: Callback) => {
 };
 
 export { handler };
-
 ```
 
 rerun and see it work!
 
 You are free to set up your `tsconfig.json` and `tslint` as you see fit.
 
-</detail>
-
+</details>
 
 ## Service Worker
 
