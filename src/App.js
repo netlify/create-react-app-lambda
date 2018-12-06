@@ -96,11 +96,18 @@ function Dashboard() {
   return (
     <div>
       <h3>This is a Protected Dashboard!</h3>
-      {!isConfirmedUser && <pre>You have not confirmed your email.</pre>}
+      {!isConfirmedUser && (
+        <pre>
+          You have not confirmed your email. Please confirm it before you ping
+          the API.
+        </pre>
+      )}
       <hr />
       <div>
-        You can try pinging our authenticated API here. If you are logged in,
-        you should be able to see a `user` info here.
+        <p>You can try pinging our authenticated API here.</p>
+        <p>
+          If you are logged in, you should be able to see a `user` info here.
+        </p>
         <button onClick={handler}>Ping authenticated API</button>
         <pre>{JSON.stringify(msg, null, 2)}</pre>
       </div>
@@ -111,7 +118,8 @@ function Nav() {
   const { isLoggedIn } = React.useContext(IdentityContext);
   return (
     <nav>
-      <Link to="/">Home</Link> |<Link to="dashboard">Dashboard</Link> |
+      <Link to="/">Home</Link> | <Link to="dashboard">Dashboard</Link>
+      {' | '}
       <span>
         {isLoggedIn ? <Logout /> : <Link to="login">Log In/Sign Up</Link>}
       </span>
@@ -132,26 +140,36 @@ function App() {
   return (
     <IdentityContext.Provider value={identity}>
       <div className="App">
-        <h1>Netlify Identity + Reach Router demo</h1>
-        <label>
-          <a href="https://www.netlify.com/docs/identity/">Netlify Identity</a>{' '}
-          Instance:{' '}
-          <input
-            type="text"
-            placeholder="your instance here e.g. https://unruffled-roentgen-04c3b8.netlify.com"
-            value={url}
-            onChange={handler}
-            size={50}
-          />
-          {window.location.hostname === 'localhost' ? (
-            <pre>WARNING: this demo doesn't work on localhost</pre>
-          ) : (
-            <pre>
-              your instance here e.g.
-              https://unruffled-roentgen-04c3b8.netlify.com
-            </pre>
-          )}
-        </label>
+        <div className="Appheader">
+          <h1 className="title">
+            Netlify Identity <span>&</span> Reach Router
+          </h1>
+          <label>
+            <a href="https://www.netlify.com/docs/identity/">
+              Netlify Identity
+            </a>{' '}
+            Instance:{' '}
+            <input
+              type="text"
+              placeholder="your instance here e.g. https://unruffled-roentgen-04c3b8.netlify.com"
+              value={url}
+              onChange={handler}
+              size={50}
+            />
+            <div>
+              <div style={{ display: 'inline-block' }}>
+                {window.location.hostname === 'localhost' ? (
+                  <pre>WARNING: this demo doesn't work on localhost</pre>
+                ) : (
+                  <pre>
+                    your instance here e.g.
+                    https://unruffled-roentgen-04c3b8.netlify.com
+                  </pre>
+                )}
+              </div>
+            </div>
+          </label>
+        </div>
         <Nav />
         <Router>
           <Home path="/" />
