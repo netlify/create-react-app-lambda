@@ -2,7 +2,7 @@
 // https://aws.amazon.com/blogs/compute/node-js-8-10-runtime-now-available-in-aws-lambda/
 
 import fetch from 'node-fetch';
-export async function handler(event, context) {
+export function handler(event, context) {
   return new Promise((resolve, reject) => {
     fetch('https://api.chucknorris.io/jokes/random')
     .then(response => {
