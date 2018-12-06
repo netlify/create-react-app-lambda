@@ -33,7 +33,7 @@ pre {
 form {
   text-align: left;
   margin: 0 auto;
-  display: 'inline-block';
+  display: inline-block;
 }
 form > div {
   margin-bottom: 1rem;
