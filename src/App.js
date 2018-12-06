@@ -124,15 +124,34 @@ function Logout() {
 }
 
 function App() {
-  const identity = useNetlifyIdentity(
-    // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
-    'https://festive-nightingale-47f180.netlify.com'
-    // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
-  );
+  // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
+  // e.g. 'https://unruffled-roentgen-04c3b8.netlify.com'
+  const [url, setUrl] = React.useState(window.location.origin);
+  const handler = e => setUrl(e.target.value);
+  const identity = useNetlifyIdentity(url);
   return (
     <IdentityContext.Provider value={identity}>
       <div className="App">
         <h1>Netlify Identity + Reach Router demo</h1>
+        <label>
+          <a href="https://www.netlify.com/docs/identity/">Netlify Identity</a>{' '}
+          Instance:{' '}
+          <input
+            type="text"
+            placeholder="your instance here e.g. https://unruffled-roentgen-04c3b8.netlify.com"
+            value={url}
+            onChange={handler}
+            size={50}
+          />
+          {window.location.hostname === 'localhost' ? (
+            <pre>WARNING: this demo doesn't work on localhost</pre>
+          ) : (
+            <pre>
+              your instance here e.g.
+              https://unruffled-roentgen-04c3b8.netlify.com
+            </pre>
+          )}
+        </label>
         <Nav />
         <Router>
           <Home path="/" />
