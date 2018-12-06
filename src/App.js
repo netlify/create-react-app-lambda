@@ -126,7 +126,7 @@ function Logout() {
 function App() {
   const identity = useNetlifyIdentity(
     // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
-    'http://festive-nightingale-47f180.netlify.com'
+    'https://festive-nightingale-47f180.netlify.com'
     // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
   );
   return (
