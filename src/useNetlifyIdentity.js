@@ -1,6 +1,6 @@
 import React from 'react';
 import GoTrue from 'gotrue-js';
-import useLocalState from './useLocalState';
+// import useLocalState from './useLocalState';
 
 export function useNetlifyIdentity(domain, onAuthChange = () => {}) {
   const authRef = React.useRef(
@@ -10,13 +10,9 @@ export function useNetlifyIdentity(domain, onAuthChange = () => {}) {
     })
   );
 
-  const [user, setUser, clearUser] = useLocalState(
-    'netlifyIdentityUserDemo',
-    onAuthChange
-  );
+  const [user, setUser] = React.useState(null);
   const _setUser = _user => {
-    if (!_user) clearUser();
-    else setUser(_user);
+    setUser(_user);
     onAuthChange(_user); // if someone's subscribed to auth changes, let 'em know
     return _user; // so that we can continue chaining
   };
