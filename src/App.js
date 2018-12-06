@@ -72,12 +72,24 @@ function Home() {
   return (
     <div>
       <h3>Welcome to the Home page!</h3>
-      <p>this is not behind an authentication wall</p>
       <p>
+        this is a <b>Public Page</b>, not behind an authentication wall
+      </p>
+      <p style={{ backgroundColor: '#EEE', padding: '1rem' }}>
+        <div>
+          <a
+            href={`https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda/tree/reachRouterAndGoTrueDemo&stack=cms`}
+          >
+            <img
+              src="https://www.netlify.com/img/deploy/button.svg"
+              alt="Deploy to Netlify"
+            />
+          </a>
+        </div>
         This demo is{' '}
         <a href="https://github.com/netlify/create-react-app-lambda/tree/reachRouterAndGoTrueDemo">
           Open Source.
-        </a>
+        </a>{' '}
       </p>
     </div>
   );
