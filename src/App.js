@@ -73,6 +73,12 @@ function Home() {
     <div>
       <h3>Welcome to the Home page!</h3>
       <p>this is not behind an authentication wall</p>
+      <p>
+        This demo is{' '}
+        <a href="https://github.com/netlify/create-react-app-lambda/tree/reachRouterAndGoTrueDemo">
+          Open Source.
+        </a>
+      </p>
     </div>
   );
 }
