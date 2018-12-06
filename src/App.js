@@ -124,8 +124,11 @@ function Logout() {
 }
 
 function App() {
-  console.log('URL', process.env.URL);
-  const identity = useNetlifyIdentity(process.env.URL);
+  const identity = useNetlifyIdentity(
+    // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
+    'http://festive-nightingale-47f180.netlify.com'
+    // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
+  );
   return (
     <IdentityContext.Provider value={identity}>
       <div className="App">
