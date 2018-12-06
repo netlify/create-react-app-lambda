@@ -47,26 +47,22 @@ function Login() {
           .catch(err => console.error(err) || setMsg('Error: ' + err.message));
       }}
     >
-      <div
-        style={{ textAlign: 'left', margin: '0 auto', display: 'inline-block' }}
-      >
-        <div>
-          <label>
-            Email:
-            <input type="email" name="email" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
-            <input type="password" name="password" />
-          </label>
-        </div>
-        <div>
-          <input type="submit" value="Log in" />
-          <button onClick={signup}>Sign Up </button>
-          {msg && <pre>{msg}</pre>}
-        </div>
+      <div>
+        <label>
+          Email:
+          <input type="email" name="email" />
+        </label>
+      </div>
+      <div>
+        <label>
+          Password:
+          <input type="password" name="password" />
+        </label>
+      </div>
+      <div>
+        <input type="submit" value="Log in" />
+        <button onClick={signup}>Sign Up </button>
+        {msg && <pre>{msg}</pre>}
       </div>
     </form>
   );

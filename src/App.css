@@ -30,6 +30,15 @@ pre {
   overflow-y: hidden;
 }
 
+form {
+  text-align: left;
+  margin: 0 auto;
+  display: 'inline-block';
+}
+form > div {
+  margin-bottom: 1rem;
+}
+
 nav {
   background: #ffe259; /* fallback for old browsers */
   background: -webkit-linear-gradient(
