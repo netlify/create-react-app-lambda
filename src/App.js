@@ -99,19 +99,31 @@ function About() {
   return <div>About</div>;
 }
 
+function useLoading() {
+  const [isLoading, setState] = React.useState(false);
+  const load = aPromise => {
+    setState(true);
+    return aPromise.then((...args) => {
+      setState(false);
+      return Promise.resolve(...args);
+    });
+  };
+  return [isLoading, load];
+}
+
 function Dashboard() {
   const props = React.useContext(IdentityContext);
-  console.log({ props });
   const { isConfirmedUser, authedFetch } = props;
+  const [isLoading, load] = useLoading();
   const [msg, setMsg] = React.useState('Click to load something');
   const handler = () => {
-    authedFetch.get('/.netlify/functions/authEndPoint').then(setMsg);
+    load(authedFetch.get('/.netlify/functions/authEndPoint')).then(setMsg);
   };
   return (
     <div>
       <h3>This is a Protected Dashboard!</h3>
       {!isConfirmedUser && (
-        <pre>
+        <pre style={{ backgroundColor: 'papayawhip' }}>
           You have not confirmed your email. Please confirm it before you ping
           the API.
         </pre>
@@ -123,8 +135,19 @@ function Dashboard() {
           If you are logged in, you should be able to see a `user` info here.
         </p>
         <button onClick={handler}>Ping authenticated API</button>
-        <pre>{JSON.stringify(msg, null, 2)}</pre>
+        {isLoading ? <Spinner /> : <pre>{JSON.stringify(msg, null, 2)}</pre>}
       </div>
+    </div>
+  );
+}
+
+function Spinner() {
+  return (
+    <div className="sk-folding-cube">
+      <div className="sk-cube1 sk-cube" />
+      <div className="sk-cube2 sk-cube" />
+      <div className="sk-cube4 sk-cube" />
+      <div className="sk-cube3 sk-cube" />
     </div>
   );
 }
@@ -146,7 +169,7 @@ function Logout() {
 }
 
 function App() {
-  // TODO: CHANGE THIS URL IF YOU ARE USING A DIFFERENT NETLIFY INSTANCE
+  // TODO: SUPPLY A URL EITHER FROM ENVIRONMENT VARIABLES OR SOME OTHER STRATEGY
   // e.g. 'https://unruffled-roentgen-04c3b8.netlify.com'
   const [url, setUrl] = React.useState(window.location.origin);
   const handler = e => setUrl(e.target.value);
