@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Link, navigate } from '@reach/router';
 import './App.css';
 import { useNetlifyIdentity } from './useNetlifyIdentity';
+import useLoading from './useLoading';
 
 let IdentityContext = React.createContext();
 
@@ -22,10 +23,11 @@ function Login() {
   const { loginUser, signupUser } = React.useContext(IdentityContext);
   const formRef = React.useRef();
   const [msg, setMsg] = React.useState('');
+  const [isLoading, load] = useLoading();
   const signup = () => {
     const email = formRef.current.email.value;
     const password = formRef.current.password.value;
-    signupUser(email, password)
+    load(signupUser(email, password))
       .then(user => {
         console.log('Success! Signed up', user);
         navigate('/dashboard');
@@ -39,7 +41,7 @@ function Login() {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        loginUser(email, password)
+        load(loginUser(email, password))
           .then(user => {
             console.log('Success! Logged in', user);
             navigate('/dashboard');
@@ -59,11 +61,15 @@ function Login() {
           <input type="password" name="password" />
         </label>
       </div>
-      <div>
-        <input type="submit" value="Log in" />
-        <button onClick={signup}>Sign Up </button>
-        {msg && <pre>{msg}</pre>}
-      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <input type="submit" value="Log in" />
+          <button onClick={signup}>Sign Up </button>
+          {msg && <pre>{msg}</pre>}
+        </div>
+      )}
     </form>
   );
 }
@@ -75,7 +81,7 @@ function Home() {
       <p>
         this is a <b>Public Page</b>, not behind an authentication wall
       </p>
-      <p style={{ backgroundColor: '#EEE', padding: '1rem' }}>
+      <div style={{ backgroundColor: '#EEE', padding: '1rem' }}>
         <div>
           <a
             href={`https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda/tree/reachRouterAndGoTrueDemo&stack=cms`}
@@ -90,25 +96,13 @@ function Home() {
         <a href="https://github.com/netlify/create-react-app-lambda/tree/reachRouterAndGoTrueDemo">
           Open Source.
         </a>{' '}
-      </p>
+      </div>
     </div>
   );
 }
 
 function About() {
   return <div>About</div>;
-}
-
-function useLoading() {
-  const [isLoading, setState] = React.useState(false);
-  const load = aPromise => {
-    setState(true);
-    return aPromise.then((...args) => {
-      setState(false);
-      return Promise.resolve(...args);
-    });
-  };
-  return [isLoading, load];
 }
 
 function Dashboard() {
