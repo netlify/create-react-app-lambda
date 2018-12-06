@@ -3,6 +3,16 @@
 
 import fetch from 'node-fetch';
 export async function handler(event, context) {
+  if (!context.clientContext && !context.clientContext.identity) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        msg:
+          'No identity instance detected. Did you enable it? Also, Netlify Identity is not supported on local dev yet.'
+      }) // Could be a custom message or object i.e. JSON.stringify(err)
+    };
+  }
+  const { identity, user } = context.clientContext;
   try {
     const response = await fetch('https://api.chucknorris.io/jokes/random');
     if (!response.ok) {
@@ -13,7 +23,7 @@ export async function handler(event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ msg: data.value })
+      body: JSON.stringify({ identity, user, msg: data.value })
     };
   } catch (err) {
     console.log(err); // output to netlify function log
