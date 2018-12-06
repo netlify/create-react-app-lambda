@@ -124,9 +124,8 @@ function Logout() {
 }
 
 function App() {
-  const identity = useNetlifyIdentity(
-    'https://optimistic-dubinsky-dacadd.netlify.com'
-  );
+  console.log('URL', process.env.URL);
+  const identity = useNetlifyIdentity(process.env.URL);
   return (
     <IdentityContext.Provider value={identity}>
       <div className="App">
