@@ -6,18 +6,15 @@
   color: #d44b15;
   text-align: center;
   background-color: #e5e4e4;
-  /* font-size: 1em; */
   font-family: Lato, serif;
   margin-top: 0px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 }
 
-.title-r1 {
-  line-height: 1em;
-  font-size: 7em;
-  font-weight: 100;
-}
-
-.title > span {
+.title .italic {
   color: #fff;
   font-size: 2em;
   font-style: italic;
@@ -52,7 +49,6 @@ nav {
     #ffe259
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   padding: 1rem;
-  font-size: 2em;
   font-family: Lato, serif;
   font-weight: bold;
   margin-bottom: 1rem;

@@ -173,7 +173,8 @@ function App() {
       <div className="App">
         <div className="Appheader">
           <h1 className="title">
-            Netlify Identity <span>&</span> Reach Router
+            <span>Netlify Identity</span>
+            <span class="italic">&</span> <span>Reach Router</span>
           </h1>
           <label>
             <a href="https://www.netlify.com/docs/identity/">
