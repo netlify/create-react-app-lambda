@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Link, navigate } from '@reach/router';
 import './App.css';
-import { useNetlifyIdentity } from './useNetlifyIdentity';
+import { useNetlifyIdentity } from 'react-netlify-identity';
 import useLoading from './useLoading';
 
 let IdentityContext = React.createContext();

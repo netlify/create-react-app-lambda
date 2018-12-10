@@ -7579,6 +7579,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-netlify-identity@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-netlify-identity/-/react-netlify-identity-0.0.1.tgz#819291117e627993890bb8c0b883b7e29c2f2d55"
+  integrity sha512-uQ2WiSwdi0WKxXHjnQaB9j1NRWOWqnwTdRl/AbXK/xCCaDdPf2Te7WIaL6rjLd+PSS4X5+42vkFJaBWZzPvRaw==
+
 react-scripts@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.1.tgz#c2959a756b0b61d3090adece0d7aedd324dff8a5"

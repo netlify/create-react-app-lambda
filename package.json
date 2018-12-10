@@ -8,6 +8,7 @@
     "node-fetch": "^2.3.0",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
+    "react-netlify-identity": "^0.0.1",
     "react-scripts": "^2.1.1"
   },
   "scripts": {
