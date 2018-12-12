@@ -50,9 +50,11 @@ This will start the normal create-react-app dev server and open your app at `htt
 
 Local in-app requests to the relative path `/.netlify/functions/*` will automatically be proxied to the local functions dev server.
 
+## Typescript
+
 <details>
   <summary>
-    <b id="typescript">Typescript</b>
+    <b id="typescript">Click for instructions</b>
   </summary>
 You can use Typescript in both your React code (with `react-scripts` v2.1+) and your lambda functions )with `netlify-lambda` v1.1+). Follow these instructions:
 
@@ -61,18 +63,24 @@ You can use Typescript in both your React code (with `react-scripts` v2.1+) and 
 3. use types in your event handler:
 
 ```ts
-import { Handler, Context, Callback } from 'aws-lambda';
+import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 
 interface HelloResponse {
   statusCode: number;
   body: string;
 }
 
-const handler: Handler = (event: any, context: Context, callback: Callback) => {
+const handler: Handler = (
+  event: APIGatewayEvent,
+  context: Context,
+  callback: Callback
+) => {
+  const params = event.queryStringParameters;
   const response: HelloResponse = {
     statusCode: 200,
     body: JSON.stringify({
-      msg: `Hello world ${Math.floor(Math.random() * 10)}`
+      msg: `Hello world ${Math.floor(Math.random() * 10)}`,
+      params
     })
   };
 
