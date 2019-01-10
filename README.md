@@ -6,6 +6,10 @@ As an example, we've included a small `src/lambda/hello.js` function, which will
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda)
 
+## Video
+
+Learn how to set this up yourself (and why everything is the way it is) from scratch in a video: https://www.youtube.com/watch?v=3ldSM98nCHI 
+
 ## Babel/webpack compilation
 
 All functions are compiled with webpack using the Babel Loader, so you can use modern JavaScript, import npm modules, etc., without any extra setup.
@@ -50,9 +54,11 @@ This will start the normal create-react-app dev server and open your app at `htt
 
 Local in-app requests to the relative path `/.netlify/functions/*` will automatically be proxied to the local functions dev server.
 
+## Typescript
+
 <details>
   <summary>
-    <b id="typescript">Typescript</b>
+    <b id="typescript">Click for instructions</b>
   </summary>
 You can use Typescript in both your React code (with `react-scripts` v2.1+) and your lambda functions )with `netlify-lambda` v1.1+). Follow these instructions:
 
@@ -61,18 +67,24 @@ You can use Typescript in both your React code (with `react-scripts` v2.1+) and 
 3. use types in your event handler:
 
 ```ts
-import { Handler, Context, Callback } from 'aws-lambda';
+import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 
 interface HelloResponse {
   statusCode: number;
   body: string;
 }
 
-const handler: Handler = (event: any, context: Context, callback: Callback) => {
+const handler: Handler = (
+  event: APIGatewayEvent,
+  context: Context,
+  callback: Callback
+) => {
+  const params = event.queryStringParameters;
   const response: HelloResponse = {
     statusCode: 200,
     body: JSON.stringify({
-      msg: `Hello world ${Math.floor(Math.random() * 10)}`
+      msg: `Hello world ${Math.floor(Math.random() * 10)}`,
+      params
     })
   };
 
@@ -87,6 +99,8 @@ rerun and see it work!
 You are free to set up your `tsconfig.json` and `tslint` as you see fit.
 
 </details>
+
+**If you want to try working in Typescript on the client and lambda side**: There are a bunch of small setup details to get right. Check https://github.com/sw-yx/create-react-app-lambda-typescript for a working starter.
 
 ## Service Worker
 
