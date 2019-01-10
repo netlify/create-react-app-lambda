@@ -168,13 +168,14 @@ function App() {
   const [url, setUrl] = React.useState(window.location.origin);
   const handler = e => setUrl(e.target.value);
   const identity = useNetlifyIdentity(url);
+  console.log({ identity, url });
   return (
     <IdentityContext.Provider value={identity}>
       <div className="App">
         <div className="Appheader">
           <h1 className="title">
             <span>Netlify Identity</span>
-            <span class="italic">&</span> <span>Reach Router</span>
+            <span className="italic">&</span> <span>Reach Router</span>
           </h1>
           <label>
             <a href="https://www.netlify.com/docs/identity/">
