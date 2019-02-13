@@ -1699,7 +1699,7 @@ babel-loader@8.0.4:
     mkdirp "^0.5.1"
     util.promisify "^1.0.0"
 
-babel-loader@^8.0.0, babel-loader@^8.0.4:
+babel-loader@^8.0.0:
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.5.tgz#225322d7509c2157655840bba52e46b6c2f2fe33"
   integrity sha512-NTnHnVRd2JnRqPC0vW+iOQWU5pchDbYXsG2E6DMXEpMfUcQKclF9gmf3G3ZMhzG7IG9ji4coL0cm+FxeWxDpnw==
@@ -6555,10 +6555,10 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
-netlify-lambda@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/netlify-lambda/-/netlify-lambda-1.2.0.tgz#8e9bf370c81e2b4e335442ccf67ff2583df34c48"
-  integrity sha512-hYbh/niRAB9347Ix7flWdtzfMvq0vyOOB2003Xt/UfV5+SSyzSM8Pksj+KIk3HMwc2zkj9W3P0EKv6nS3ie15w==
+netlify-lambda@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/netlify-lambda/-/netlify-lambda-1.4.1.tgz#8cd04865bcf17a4fd231ff886338c788ebebc7d5"
+  integrity sha512-Tb4bxN9SzMbs+KaB3bPhUimVPJV77pY7M97BwPklSLhohm8Ooym8JmUtakoP3khsZDW5/hxwwsO5PWHW4oo41Q==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/plugin-proposal-class-properties" "^7.0.0"
