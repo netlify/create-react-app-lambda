@@ -1,6 +1,8 @@
+> ⚠️You may not need `netlify-lambda`. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box, give it a try! Only use `netlify-lambda` if you need a build step for your functions.
+
 This project is based on [Create React App v2](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda). (For more information about Create react App, check their full [documentation](https://github.com/facebookincubator/create-react-app#create-react-app).)
 
-The main addition is a new folder: `src/lambda`. Each JavaScript file in there will automatically be prepared for Lambda function deployment.
+The main addition to base Create-React-App is a new folder: `src/lambda`. Each JavaScript file in there will automatically be prepared for Lambda function deployment.
 
 As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`. We've also included an async lambda example using async/await syntax in `async-chuck-norris.js`.
 
@@ -8,7 +10,7 @@ As an example, we've included a small `src/lambda/hello.js` function, which will
 
 ## Video
 
-Learn how to set this up yourself (and why everything is the way it is) from scratch in a video: https://www.youtube.com/watch?v=3ldSM98nCHI 
+Learn how to set this up yourself (and why everything is the way it is) from scratch in a video: https://www.youtube.com/watch?v=3ldSM98nCHI
 
 ## Babel/webpack compilation
 
@@ -67,31 +69,27 @@ You can use Typescript in both your React code (with `react-scripts` v2.1+) and 
 3. use types in your event handler:
 
 ```ts
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
+import { Handler, Context, Callback, APIGatewayEvent } from "aws-lambda"
 
 interface HelloResponse {
-  statusCode: number;
-  body: string;
+  statusCode: number
+  body: string
 }
 
-const handler: Handler = (
-  event: APIGatewayEvent,
-  context: Context,
-  callback: Callback
-) => {
-  const params = event.queryStringParameters;
+const handler: Handler = (event: APIGatewayEvent, context: Context, callback: Callback) => {
+  const params = event.queryStringParameters
   const response: HelloResponse = {
     statusCode: 200,
     body: JSON.stringify({
       msg: `Hello world ${Math.floor(Math.random() * 10)}`,
       params
     })
-  };
+  }
 
-  callback(undefined, response);
-};
+  callback(undefined, response)
+}
 
-export { handler };
+export { handler }
 ```
 
 rerun and see it work!
