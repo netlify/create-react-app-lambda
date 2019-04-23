@@ -1,4 +1,4 @@
-> ⚠️You may not need `netlify-lambda`. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box, give it a try! Only use `netlify-lambda` if you need a build step for your functions.
+> ⚠️You may not need `netlify-lambda`. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box, give it a try! Only use `netlify-lambda` if you need a build step for your functions. [See its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda).
 
 This project is based on latest versions of [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda).
 
