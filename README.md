@@ -1,8 +1,8 @@
 > ⚠️You may not need `netlify-lambda`. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box, give it a try! Only use `netlify-lambda` if you need a build step for your functions.
 
-This project is based on [Create React App v2](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda). (For more information about Create react App, check their full [documentation](https://github.com/facebookincubator/create-react-app#create-react-app).)
+This project is based on latest versions of [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda).
 
-The main addition to base Create-React-App is a new folder: `src/lambda`. Each JavaScript file in there will automatically be prepared for Lambda function deployment.
+The main addition to base Create-React-App is a new folder: `src/lambda`. Each JavaScript file in there will be built for Lambda function deployment in `/built-lambda`, specified in [`netlify.toml`](https://www.netlify.com/docs/netlify-toml-reference/).
 
 As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`. We've also included an async lambda example using async/await syntax in `async-chuck-norris.js`.
 
