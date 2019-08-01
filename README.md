@@ -2,7 +2,7 @@
 
 This project is a reference demo showing you how to use [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda) together in a [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) workflow.
 
-⚠️NOTE: You may not need `netlify-lambda`. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) already works with `create-react-app` out of the box, give it a try! **Only use `netlify-lambda` if you need a build step for your functions.** [See its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda).
+⚠️NOTE: You may not need this project at all. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) already works with `create-react-app` out of the box! **Only use `netlify-lambda` if you need a build step for your functions** [See its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda), eg if you want to use Babel or TypeScript.
 
 ## Project Setup
 
