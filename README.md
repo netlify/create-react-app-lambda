@@ -12,6 +12,8 @@ Dist: Each JavaScript file in there will be built for Lambda function deployment
 
 As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`. We've also included an async lambda example using async/await syntax in `async-dadjoke.js`.
 
+Your functions will be available locally at
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda)
 
 ## Video
@@ -38,7 +40,11 @@ ntl dev ## nice shortcut for `neltify dev`
 This fires up [Netlify Dev](https://github.com/netlify/netlify-dev-plugin/), which:
 
 - Detects that you are running a `create-react-app` project and runs the npm script that contains `react-scripts start`, which in this project is the `start` script
-- Detects that you use `netlify-lambda` as a [function builder](https://github.com/netlify/netlify-dev-plugin/#function-builders-function-builder-detection-and-relationship-with-netlify-lambda), and runs the npm script that contains `netlify-lambda build`, which in this project is the `build:lambda` script
+- Detects that you use `netlify-lambda` as a [function builder](https://github.com/netlify/netlify-dev-plugin/#function-builders-function-builder-detection-and-relationship-with-netlify-lambda), and runs the npm script that contains `netlify-lambda build`, which in this project is the `build:lambda` script.
+
+You can view the project locally via Netlify Dev, via `localhost:8888`.
+
+Each function will be available at the same port as well: `http://localhost:8888/.netlify/functions/hello` and `http://localhost:8888/.netlify/functions/async-dadjoke`.
 
 ## Deployment
 
