@@ -1,20 +1,19 @@
 ## Create-React-App-Lambda
 
-This project is a reference demo showing you how to use [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda) together in a [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) workflow.
+This project is a reference demo showing you how to use [Create React App v3](https://github.com/facebookincubator/create-react-app) and [netlify-lambda v1](https://github.com/netlify/netlify-lambda) together in a [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) workflow. You can clone this and immediately be productive with a React app with serverless Netlify Functions in the same repo. Alternatively you can depoy straight to Netlify with this one-click Deploy:
 
-⚠️NOTE: You may not need this project at all. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) already works with `create-react-app` out of the box! **Only use `netlify-lambda` if you need a build step for your functions** [See its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda), eg if you want to use Babel or TypeScript.
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda)
+
+> ⚠️NOTE: You may not need this project at all. [Netlify Dev](https://github.com/netlify/netlify-dev-plugin) works with `create-react-app` out of the box! Only use `netlify-lambda` if you need a build step for your functions, eg if you want to use Babel or TypeScript ([see its README for details](https://github.com/netlify/netlify-lambda/blob/master/README.md#netlify-lambda)).
 
 ## Project Setup
 
-Source: The main addition to base Create-React-App is a new folder: `src/lambda`. This folder is specified and can be changed in the `package.json` script: `"build:lambda": "netlify-lambda build src/lambda"`.
+**Source**: The main addition to base Create-React-App is a new folder: `src/lambda`. This folder is specified and can be changed in the `package.json` script: `"build:lambda": "netlify-lambda build src/lambda"`.
 
-Dist: Each JavaScript file in there will be built for Lambda function deployment in `/built-lambda`, specified in [`netlify.toml`](https://www.netlify.com/docs/netlify-toml-reference/).
+**Dist**: Each JavaScript file in there will be built for Netlify Function deployment in `/built-lambda`, specified in [`netlify.toml`](https://www.netlify.com/docs/netlify-toml-reference/).
 
 As an example, we've included a small `src/lambda/hello.js` function, which will be deployed to `/.netlify/functions/hello`. We've also included an async lambda example using async/await syntax in `async-dadjoke.js`.
-
-Your functions will be available locally at
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/create-react-app-lambda)
 
 ## Video
 
@@ -22,7 +21,7 @@ Learn how to set this up yourself (and why everything is the way it is) from scr
 
 ## Babel/webpack compilation
 
-All functions are compiled with webpack using the Babel Loader, so you can use modern JavaScript, import npm modules, etc., without any extra setup.
+All functions (inside `src/lambda`) are compiled with webpack using Babel, so you can use modern JavaScript, import npm modules, etc., without any extra setup.
 
 ## Local Development
 
@@ -34,7 +33,7 @@ cd create-react-app-lambda ## change into this repo
 yarn # install all dependencies
 
 ## done every time you start up this project
-ntl dev ## nice shortcut for `neltify dev`
+ntl dev ## nice shortcut for `netlify dev`, starts up create-react-app AND a local Node.js server for your Netlify functions
 ```
 
 This fires up [Netlify Dev](https://github.com/netlify/netlify-dev-plugin/), which:
@@ -44,7 +43,10 @@ This fires up [Netlify Dev](https://github.com/netlify/netlify-dev-plugin/), whi
 
 You can view the project locally via Netlify Dev, via `localhost:8888`.
 
-Each function will be available at the same port as well: `http://localhost:8888/.netlify/functions/hello` and `http://localhost:8888/.netlify/functions/async-dadjoke`.
+Each function will be available at the same port as well:
+
+- `http://localhost:8888/.netlify/functions/hello` and 
+- `http://localhost:8888/.netlify/functions/async-dadjoke`
 
 ## Deployment
 
@@ -97,7 +99,7 @@ You are free to set up your `tsconfig.json` and `tslint` as you see fit.
 
 **If you want to try working in Typescript on the client and lambda side**: There are a bunch of small setup details to get right. Check https://github.com/sw-yx/create-react-app-lambda-typescript for a working starter.
 
-## Routing and authentication
+## Routing and authentication with Netlify Identity
 
 For a full demo of routing and authentication, check this branch: https://github.com/netlify/create-react-app-lambda/pull/18 This example will not be maintained but may be helpful.
 
