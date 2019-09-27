@@ -3,7 +3,7 @@
 
 import fetch from 'node-fetch';
 export async function handler(event, context) {
-  if (!context.clientContext && !context.clientContext.identity) {
+  if (!context.clientContext || !context.clientContext.identity) {
     return {
       statusCode: 500,
       body: JSON.stringify({
