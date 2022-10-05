@@ -4,7 +4,6 @@
 const axios = require("axios");
 exports.handler = async (event) => {
   try {
-    console.log("asdf");
     // YOU HAVE TO USE "User-Agent"
     // see https://stackoverflow.com/questions/68678930/why-making-a-get-request-with-axios-failing-with-status-code-503
     const response = await axios.get("https://icanhazdadjoke.com/", {
