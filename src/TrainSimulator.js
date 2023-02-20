@@ -16,9 +16,9 @@ function TrainSimulator() {
       console.log(simulationData);
     }, 1000);
   
-    function stopSimulation() {
-      clearInterval(intervalId);
-    }
+    //function stopSimulation() {
+    //  clearInterval(intervalId);
+    //}
     
   }
   
