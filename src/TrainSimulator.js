@@ -10,7 +10,7 @@ function TrainSimulator() {
   const startSimulation = () => {
     setIsRunning(true);
     intervalRef.current = setInterval(() => {
-      console.log({ speed, throttle, pressure });
+      console.log({ ...speed, ...throttle, ...pressure });
     }, 1000);
   };
 
@@ -20,21 +20,15 @@ function TrainSimulator() {
   };
 
   const handleSpeedChange = (event) => {
-    stopSimulation;
     setSpeed(event.target.value);
-    startSimulation;
   };
 
   const handleThrottleChange = (event) => {
-    stopSimulation;
     setThrottle(event.target.value);
-    startSimulation;
   };
 
   const handlePressureChange = (event) => {
-    stopSimulation;
     setPressure(event.target.value);
-    startSimulation;
   };
 
 
