@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 
 function TrainSimulator() {
-
+  const [speed, setSpeed] = useState(0);
+  const [throttle, setThrottle] = useState(0);
+  const [pressure, setPressure] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
@@ -17,14 +19,25 @@ function TrainSimulator() {
     clearInterval(intervalRef.current);
   };
 
- function handleChange(event) {
-    const { name, value } = event.target;
-    this.setState(prevState => {
-      const newState = { ...prevState };
-      newState[name] = value;
-      return newState;
-    });
-  }
+  const handleSpeedChange = (event) => {
+    stopSimulation();
+    setSpeed(event.target.value);
+    startSimulation();
+  };
+
+  const handleThrottleChange = (event) => {
+    stopSimulation();
+    setThrottle(event.target.value);
+    startSimulation();
+  };
+
+  const handlePressureChange = (event) => {
+    stopSimulation();
+    setPressure(event.target.value);
+    startSimulation();
+  };
+
+
 
   return (
     <div>
@@ -37,7 +50,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={speed}
-          onChange={handleChange}
+          onChange={handleSpeedChange}
         />
         <span>{speed}</span>
       </div>
@@ -50,7 +63,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={throttle}
-          onChange={handleChange}
+          onChange={handleThrottleChange}
         />
         <span>{throttle}</span>
       </div>
@@ -63,7 +76,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={pressure}
-          onChange={handleChange}
+          onChange={handlePressureChange}
         />
         <span>{pressure}</span>
       </div>
