@@ -42,7 +42,7 @@ const Simulator = () => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Speed</h5>
-              <input type="range" min="0" max="100" value={speed} className="slider" id="speed-slider" onChange={handleSpeedChange} />
+              <input type="range" min="0" max="100" value={sliderValues.speed} className="slider" id="speed-slider" onChange={handleSpeedChange} />
               <p className="card-text text-center">{speed}</p>
             </div>
           </div>
@@ -52,7 +52,7 @@ const Simulator = () => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Throttle</h5>
-              <input type="range" min="0" max="100" value={throttle} className="slider" id="throttle-slider" onChange={handleThrottleChange} />
+              <input type="range" min="0" max="100" value={sliderValues.throttle} className="slider" id="throttle-slider" onChange={handleThrottleChange} />
               <p className="card-text text-center">{throttle}</p>
             </div>
           </div>
@@ -62,7 +62,7 @@ const Simulator = () => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Pressure</h5>
-              <input type="range" min="0" max="100" value={pressure} className="slider" id="pressure-slider" onChange={handlePressureChange} />
+              <input type="range" min="0" max="100" value={sliderValues.pressure} className="slider" id="pressure-slider" onChange={handlePressureChange} />
               <p className="card-text text-center">{pressure}</p>
             </div>
           </div>
