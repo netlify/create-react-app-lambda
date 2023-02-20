@@ -1,89 +1,88 @@
 import React, { useState } from 'react';
 
 function TrainSimulator() {
-  const [speedValue, setSpeedValue] = useState(0);
-  const [throttleValue, setThrottleValue] = useState(0);
-  const [pressureValue, setPressureValue] = useState(0);
+  const [speed, setSpeed] = useState(0);
+  const [throttle, setThrottle] = useState(0);
+  const [pressure, setPressure] = useState(0);
 
   function startSimulation() {
     const intervalId = setInterval(() => {
-      const speedValue = parseInt(document.getElementById('speed-slider').value);
-      const throttleValue = parseInt(document.getElementById('throttle-slider').value);
-      const pressureValue = parseInt(document.getElementById('pressure-slider').value);
-  
-      const simulationData = { speed: speedValue, throttle: throttleValue, pressure: pressureValue };
-  
+      const simulationData = { speed, throttle, pressure };
       console.log(simulationData);
     }, 1000);
-  
-    //function stopSimulation() {
-    //  clearInterval(intervalId);
-    //}
-    
-  }
-  
 
-  
+    function stopSimulation() {
+      clearInterval(intervalId);
+    }
+
+    return stopSimulation;
+  }
+
+  function stopSimulationHandler() {
+    stopSimulation();
+  }
+
+  const stopSimulation = startSimulation();
+
+  function handleSpeedChange(event) {
+    setSpeed(parseInt(event.target.value));
+  }
+
+  function handleThrottleChange(event) {
+    setThrottle(parseInt(event.target.value));
+  }
+
+  function handlePressureChange(event) {
+    setPressure(parseInt(event.target.value));
+  }
+
   return (
-    <div className="container">
-      <h1 className="text-center mt-3">Train Simulator</h1>
-      <div className="row mt-5">
-        <div className="col-4">
+    <div>
+      <h1>Train Simulator</h1>
+
+      <div className="row">
+        <div className="col">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title text-center">Speed Dial</h5>
-              <p className="card-text text-center">Value: {speedValue}</p>
+              <h5 className="card-title">Speed</h5>
+              <input type="range" min="0" max="100" value={speed} className="slider" id="speed-slider" onChange={handleSpeedChange} />
+              <p className="card-text text-center">{speed}</p>
             </div>
           </div>
         </div>
-        <div className="col-4">
+
+        <div className="col">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title text-center">Throttle</h5>
-              <p className="card-text text-center">Value: {throttleValue}</p>
+              <h5 className="card-title">Throttle</h5>
+              <input type="range" min="0" max="100" value={throttle} className="slider" id="throttle-slider" onChange={handleThrottleChange} />
+              <p className="card-text text-center">{throttle}</p>
             </div>
           </div>
         </div>
-        <div className="col-4">
+
+        <div className="col">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title text-center">Pressure Gauge</h5>
-              <p className="card-text text-center">Value: {pressureValue}</p>
+              <h5 className="card-title">Pressure</h5>
+              <input type="range" min="0" max="100" value={pressure} className="slider" id="pressure-slider" onChange={handlePressureChange} />
+              <p className="card-text text-center">{pressure}</p>
             </div>
           </div>
         </div>
       </div>
-      <div className="row mt-5">
-        <div className="col-4">
-          <div className="form-group">
-            <label htmlFor="speed-slider" className="text-center">Speed</label>
-            <input type="range" className="form-control-range" id="speed-slider" min="0" max="100" value={speedValue} onChange={(e) => setSpeedValue(e.target.value)} />
-            <p className="text-center">Value: {speedValue}</p>
-          </div>
+
+      <div className="row">
+        <div className="col text-center">
+          <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
         </div>
-        <div className="col-4">
-          <div className="form-group">
-            <label htmlFor="throttle-slider" className="text-center">Throttle</label>
-            <input type="range" className="form-control-range" id="throttle-slider" min="0" max="100" value={throttleValue} onChange={(e) => setThrottleValue(e.target.value)} />
-            <p className="text-center">Value: {throttleValue}</p>
-          </div>
-        </div>
-        <div className="col-4">
-          <div className="form-group">
-            <label htmlFor="pressure-slider" className="text-center">Pressure</label>
-            <input type="range" className="form-control-range" id="pressure-slider" min="0" max="100" value={pressureValue} onChange={(e) => setPressureValue(e.target.value)} />
-            <p className="text-center">Value: {pressureValue}</p>
-          </div>
+
+        <div className="col text-center">
+          <button type="button" className="btn btn-danger" onClick={stopSimulationHandler}>Stop</button>
         </div>
       </div>
-      <div className="row mt-5">
-        <div className="col-4 offset-4">
-          <div className="btn-group btn-block" role="group" aria-label="Play and Stop buttons">
-            <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
-            
-            </div>
-            </div>
-            </div>
-            </div>)}
+    </div>
+  );
+}
 
 export default TrainSimulator;
