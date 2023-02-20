@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function TrainSimulator() {
   const [speed, setSpeed] = useState(0);
@@ -7,16 +7,26 @@ function TrainSimulator() {
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
+  useEffect(() => {
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        console.log({ speed, throttle, pressure });
+      }, 1000);
+    } else {
+      clearInterval(intervalRef.current);
+    }
+
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [isRunning, speed, throttle, pressure]);
+
   const startSimulation = () => {
     setIsRunning(true);
-    intervalRef.current = setInterval(() => {
-      console.log({ ...speed, ...throttle, ...pressure });
-    }, 1000);
   };
 
   const stopSimulation = () => {
     setIsRunning(false);
-    clearInterval(intervalRef.current);
   };
 
   const handleSpeedChange = (event) => {
@@ -30,7 +40,6 @@ function TrainSimulator() {
   const handlePressureChange = (event) => {
     setPressure(event.target.value);
   };
-
 
 
   return (
