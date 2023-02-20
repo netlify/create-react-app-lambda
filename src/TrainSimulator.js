@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 
-function TrainSimulator() {
+function useSimulation() {
   const [speed, setSpeed] = useState(0);
   const [throttle, setThrottle] = useState(0);
   const [pressure, setPressure] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
 
   function startSimulation() {
-    const intervalId = setInterval(() => {
+    const newIntervalId = setInterval(() => {
       const simulationData = { speed, throttle, pressure };
       console.log(simulationData);
     }, 1000);
 
-    function stopSimulation() {
-      clearInterval(intervalId);
-    }
-
-    return stopSimulation;
+    setIntervalId(newIntervalId);
   }
 
-  function stopSimulationHandler() {
-    stopSimulation();
+  function stopSimulation() {
+    clearInterval(intervalId);
+    setIntervalId(null);
   }
-
-  const stopSimulation = startSimulation();
 
   function handleSpeedChange(event) {
     setSpeed(parseInt(event.target.value));
@@ -34,6 +30,36 @@ function TrainSimulator() {
 
   function handlePressureChange(event) {
     setPressure(parseInt(event.target.value));
+  }
+
+  return {
+    speed,
+    throttle,
+    pressure,
+    intervalId,
+    startSimulation,
+    stopSimulation,
+    handleSpeedChange,
+    handleThrottleChange,
+    handlePressureChange,
+  };
+}
+
+function TrainSimulator() {
+  const {
+    speed,
+    throttle,
+    pressure,
+    intervalId,
+    startSimulation,
+    stopSimulation,
+    handleSpeedChange,
+    handleThrottleChange,
+    handlePressureChange,
+  } = useSimulation();
+
+  function stopSimulationHandler() {
+    stopSimulation();
   }
 
   return (
@@ -78,10 +104,12 @@ function TrainSimulator() {
         </div>
 
         <div className="col text-center">
-          <button type="button" className="btn btn-danger" onClick={stopSimulationHandler}>Stop</button>
+          <button type="button" className="btn btn-danger" onClick={stopSimulationHandler} disabled={!intervalId}>Stop</button>
         </div>
       </div>
     </div>
+ 
+
   );
 }
 
