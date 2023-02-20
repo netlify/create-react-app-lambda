@@ -5,15 +5,24 @@ function TrainSimulator() {
   const [throttleValue, setThrottleValue] = useState(0);
   const [pressureValue, setPressureValue] = useState(0);
 
- const startSimulation = () => {
-    // Code to start simulation
-    alert('Starting ...')
-  };
-
-  const stopSimulation = () => {
-    alert('Stoppinf ...')
-  };
-
+  function startSimulation() {
+    const intervalId = setInterval(() => {
+      const speedValue = parseInt(document.getElementById('speed-slider').value);
+      const throttleValue = parseInt(document.getElementById('throttle-slider').value);
+      const pressureValue = parseInt(document.getElementById('pressure-slider').value);
+  
+      const simulationData = { speed: speedValue, throttle: throttleValue, pressure: pressureValue };
+  
+      console.log(simulationData);
+    }, 1000);
+  
+    function stopSimulation() {
+      clearInterval(intervalId);
+    }
+  }
+  
+  
+  
   return (
     <div className="container">
       <h1 className="text-center mt-3">Train Simulator</h1>
