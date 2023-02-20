@@ -1,121 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
-function useSimulation() {
+function TrainSimulator() {
   const [speed, setSpeed] = useState(0);
   const [throttle, setThrottle] = useState(0);
   const [pressure, setPressure] = useState(0);
-  const [intervalId, setIntervalId] = useState(null);
+  const [isRunning, setIsRunning] = useState(false);
+  const intervalRef = useRef(null);
 
-  function startSimulation() {
-    const newIntervalId = setInterval(() => {
-      const simulationData = { speed, throttle, pressure };
-      console.log(simulationData);
+  const startSimulation = () => {
+    setIsRunning(true);
+    intervalRef.current = setInterval(() => {
+      console.log({ speed, throttle, pressure });
     }, 1000);
-
-    setIntervalId(newIntervalId);
-  }
-
-  function stopSimulation() {
-    clearInterval(intervalId);
-    setIntervalId(null);
-  }
-
-  function handleSpeedChange(event) {
-    setSpeed(parseInt(event.target.value));
- 
-  }
-
-  function handleThrottleChange(event) {
-    setThrottle(parseInt(event.target.value));
-
-  }
-
-  function handlePressureChange(event) {
-    setPressure(parseInt(event.target.value));
-
-  }
-
-  return {
-    speed,
-    throttle,
-    pressure,
-    intervalId,
-    startSimulation,
-    stopSimulation,
-    handleSpeedChange,
-    handleThrottleChange,
-    handlePressureChange,
   };
-}
 
-function TrainSimulator() {
-  const {
-    speed,
-    throttle,
-    pressure,
-    intervalId,
-    startSimulation,
-    stopSimulation,
-    handleSpeedChange,
-    handleThrottleChange,
-    handlePressureChange,
-  } = useSimulation();
+  const stopSimulation = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
+  };
 
-  function stopSimulationHandler() {
-    stopSimulation();
-  }
+  const handleSpeedChange = (event) => {
+    setSpeed(event.target.value);
+  };
 
-  
+  const handleThrottleChange = (event) => {
+    setThrottle(event.target.value);
+  };
+
+  const handlePressureChange = (event) => {
+    setPressure(event.target.value);
+  };
 
   return (
     <div>
-      <h1>Train Simulator</h1>
-
-      <div className="row">
-        <div className="col">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Speed</h5>
-              <input type="range" min="0" max="100" value={speed} className="slider" id="speed-slider" onChange={handleSpeedChange} />
-              <p className="card-text text-center">{speed}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Throttle</h5>
-              <input type="range" min="0" max="100" value={throttle} className="slider" id="throttle-slider" onChange={handleThrottleChange} />
-              <p className="card-text text-center">{throttle}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Pressure</h5>
-              <input type="range" min="0" max="100" value={pressure} className="slider" id="pressure-slider" onChange={handlePressureChange} />
-              <p className="card-text text-center">{pressure}</p>
-            </div>
-          </div>
-        </div>
+      <div>
+        <label htmlFor="speed">Speed:</label>
+        <input
+          type="range"
+          id="speed"
+          name="speed"
+          min="0"
+          max="100"
+          value={speed}
+          onChange={handleSpeedChange}
+        />
+        <span>{speed}</span>
       </div>
-
-      <div className="row">
-        <div className="col text-center">
-          <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
-        </div>
-
-        <div className="col text-center">
-          <button type="button" className="btn btn-danger" onClick={stopSimulationHandler} disabled={!intervalId}>Stop</button>
-        </div>
+      <div>
+        <label htmlFor="throttle">Throttle:</label>
+        <input
+          type="range"
+          id="throttle"
+          name="throttle"
+          min="0"
+          max="100"
+          value={throttle}
+          onChange={handleThrottleChange}
+        />
+        <span>{throttle}</span>
+      </div>
+      <div>
+        <label htmlFor="pressure">Pressure:</label>
+        <input
+          type="range"
+          id="pressure"
+          name="pressure"
+          min="0"
+          max="100"
+          value={pressure}
+          onChange={handlePressureChange}
+        />
+        <span>{pressure}</span>
+      </div>
+      <div>
+        {isRunning ? (
+          <button onClick={stopSimulation}>Stop</button>
+        ) : (
+          <button onClick={startSimulation}>Start</button>
+        )}
       </div>
     </div>
- 
-
   );
 }
+
 
 export default TrainSimulator;
