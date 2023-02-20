@@ -5,14 +5,15 @@ function TrainSimulator() {
   const [throttleValue, setThrottleValue] = useState(0);
   const [pressureValue, setPressureValue] = useState(0);
 
-  const startSimulation = () => {
+ /* const startSimulation = () => {
     // Code to start simulation
+    alert('Starting ...')
   };
 
   const stopSimulation = () => {
-    // Code to stop simulation
+    alert('Stoppinf ...')
   };
-
+*/
   return (
     <div className="container">
       <h1 className="text-center mt-3">Train Simulator</h1>
