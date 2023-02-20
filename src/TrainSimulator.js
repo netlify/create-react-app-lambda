@@ -20,21 +20,21 @@ function TrainSimulator() {
   };
 
   const handleSpeedChange = (event) => {
-    stopSimulation();
+    stopSimulation;
     setSpeed(event.target.value);
-    startSimulation();
+    startSimulation;
   };
 
   const handleThrottleChange = (event) => {
-    stopSimulation();
+    stopSimulation;
     setThrottle(event.target.value);
-    startSimulation();
+    startSimulation;
   };
 
   const handlePressureChange = (event) => {
-    stopSimulation();
+    stopSimulation;
     setPressure(event.target.value);
-    startSimulation();
+    startSimulation;
   };
 
 
