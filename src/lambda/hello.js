@@ -2,7 +2,7 @@
 export function handler(event, context, callback) {
   console.log('queryStringParameters', event.queryStringParameters)
   let x = (Math.random(1,100) *100);
-  const myMsg = 'Hello World, Your number is ' + x;
+  const myMsg = 'Hello Cris, Your number is ' + x;
   callback(null, {
     statusCode: 200,
     body: JSON.stringify({ msg: myMsg }),
