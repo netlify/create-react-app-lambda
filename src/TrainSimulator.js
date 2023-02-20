@@ -1,92 +1,120 @@
-import React, { useState } from "react";
-import { Slider } from 'react-bootstrap';
+import React, { useState } from 'react';
 
-function TrainSimulator() {
-  const [isPlaying, setIsPlaying] = useState(false);
+function useSimulation() {
+  const [speed, setSpeed] = useState(0);
+  const [throttle, setThrottle] = useState(0);
+  const [pressure, setPressure] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
-  const [speed, setSpeed] = useState(50);
-  const [throttle, setThrottle] = useState(50);
-  const [pressure, setPressure] = useState(50);
 
-  const handleSpeedChange = (event, value) => {
-    setSpeed(value);
-  };
+  function startSimulation() {
+    const newIntervalId = setInterval(() => {
+      const simulationData = { speed, throttle, pressure };
+      console.log(simulationData);
+    }, 1000);
 
-  const handleThrottleChange = (event, value) => {
-    setThrottle(value);
-  };
+    setIntervalId(newIntervalId);
+  }
 
-  const handlePressureChange = (event, value) => {
-    setPressure(value);
-  };
-
-  const startSimulation = () => {
-    setIsPlaying(true);
-    setIntervalId(
-      setInterval(() => {
-        const data = {
-          speed,
-          throttle,
-          pressure,
-        };
-        console.log(data);
-      }, 1000)
-    );
-  };
-
-  const stopSimulation = () => {
-    setIsPlaying(false);
+  function stopSimulation() {
     clearInterval(intervalId);
     setIntervalId(null);
+  }
+
+  function handleSpeedChange(event) {
+    setSpeed(parseInt(event.target.value));
+ 
+  }
+
+  function handleThrottleChange(event) {
+    setThrottle(parseInt(event.target.value));
+
+  }
+
+  function handlePressureChange(event) {
+    setPressure(parseInt(event.target.value));
+
+  }
+
+  return {
+    speed,
+    throttle,
+    pressure,
+    intervalId,
+    startSimulation,
+    stopSimulation,
+    handleSpeedChange,
+    handleThrottleChange,
+    handlePressureChange,
   };
+}
+
+function TrainSimulator() {
+  const {
+    speed,
+    throttle,
+    pressure,
+    intervalId,
+    startSimulation,
+    stopSimulation,
+    handleSpeedChange,
+    handleThrottleChange,
+    handlePressureChange,
+  } = useSimulation();
+
+  function stopSimulationHandler() {
+    stopSimulation();
+  }
+
+  
 
   return (
     <div>
       <h1>Train Simulator</h1>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <h2>Speed</h2>
-          <Slider
-            value={speed}
-            min={0}
-            max={100}
-            onChange={handleSpeedChange}
-            aria-labelledby="speed-slider"
-          />
-          <p style={{ textAlign: "center" }}>{speed}</p>
+
+      <div className="row">
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Speed</h5>
+              <input type="range" min="0" max="100" value={speed} className="slider" id="speed-slider" onChange={handleSpeedChange} />
+              <p className="card-text text-center">{speed}</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>Throttle</h2>
-          <Slider
-            value={throttle}
-            min={0}
-            max={100}
-            onChange={handleThrottleChange}
-            aria-labelledby="throttle-slider"
-          />
-          <p style={{ textAlign: "center" }}>{throttle}</p>
+
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Throttle</h5>
+              <input type="range" min="0" max="100" value={throttle} className="slider" id="throttle-slider" onChange={handleThrottleChange} />
+              <p className="card-text text-center">{throttle}</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>Pressure</h2>
-          <Slider
-            value={pressure}
-            min={0}
-            max={100}
-            onChange={handlePressureChange}
-            aria-labelledby="pressure-slider"
-          />
-          <p style={{ textAlign: "center" }}>{pressure}</p>
+
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Pressure</h5>
+              <input type="range" min="0" max="100" value={pressure} className="slider" id="pressure-slider" onChange={handlePressureChange} />
+              <p className="card-text text-center">{pressure}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button disabled={isPlaying} onClick={startSimulation}>
-          Play
-        </button>
-        <button disabled={!isPlaying} onClick={stopSimulation}>
-          Stop
-        </button>
+
+      <div className="row">
+        <div className="col text-center">
+          <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
+        </div>
+
+        <div className="col text-center">
+          <button type="button" className="btn btn-danger" onClick={stopSimulationHandler} disabled={!intervalId}>Stop</button>
+        </div>
       </div>
     </div>
+ 
+
   );
 }
 
