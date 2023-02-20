@@ -5,7 +5,7 @@ function TrainSimulator() {
   const [throttleValue, setThrottleValue] = useState(0);
   const [pressureValue, setPressureValue] = useState(0);
 
- /* const startSimulation = () => {
+ const startSimulation = () => {
     // Code to start simulation
     alert('Starting ...')
   };
@@ -13,7 +13,7 @@ function TrainSimulator() {
   const stopSimulation = () => {
     alert('Stoppinf ...')
   };
-*/
+
   return (
     <div className="container">
       <h1 className="text-center mt-3">Train Simulator</h1>
@@ -70,6 +70,7 @@ function TrainSimulator() {
         <div className="col-4 offset-4">
           <div className="btn-group btn-block" role="group" aria-label="Play and Stop buttons">
             <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
+            <button type="button" className="btn btn-fail" onClick={stopSimulation}>Stop</button>
             </div>
             </div>
             </div>
