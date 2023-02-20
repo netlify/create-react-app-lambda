@@ -11,7 +11,7 @@ function TrainSimulator() {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
         console.log({ speed, throttle, pressure });
-      }, 1000);
+      }, 100);
     } else {
       clearInterval(intervalRef.current);
     }
