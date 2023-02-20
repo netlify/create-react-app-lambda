@@ -19,17 +19,14 @@ function TrainSimulator() {
     clearInterval(intervalRef.current);
   };
 
-  const handleSpeedChange = (event) => {
-    setSpeed(event.target.value);
-  };
-
-  const handleThrottleChange = (event) => {
-    setThrottle(event.target.value);
-  };
-
-  const handlePressureChange = (event) => {
-    setPressure(event.target.value);
-  };
+ function handleChange(event) {
+    const { name, value } = event.target;
+    this.setState(prevState => {
+      const newState = { ...prevState };
+      newState[name] = value;
+      return newState;
+    });
+  }
 
   return (
     <div>
@@ -42,7 +39,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={speed}
-          onChange={handleSpeedChange}
+          onChange={handleChange}
         />
         <span>{speed}</span>
       </div>
@@ -55,7 +52,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={throttle}
-          onChange={handleThrottleChange}
+          onChange={handleChange}
         />
         <span>{throttle}</span>
       </div>
@@ -68,7 +65,7 @@ function TrainSimulator() {
           min="0"
           max="100"
           value={pressure}
-          onChange={handlePressureChange}
+          onChange={handleChange}
         />
         <span>{pressure}</span>
       </div>
