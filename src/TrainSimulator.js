@@ -22,14 +22,17 @@ function useSimulation() {
 
   function handleSpeedChange(event) {
     setSpeed(parseInt(event.target.value));
+    startSimulation();
   }
 
   function handleThrottleChange(event) {
     setThrottle(parseInt(event.target.value));
+    startSimulation();
   }
 
   function handlePressureChange(event) {
     setPressure(parseInt(event.target.value));
+    startSimulation();
   }
 
   return {
