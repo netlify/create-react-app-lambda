@@ -22,17 +22,17 @@ function useSimulation() {
 
   function handleSpeedChange(event) {
     setSpeed(parseInt(event.target.value));
-    startSimulation();
+ 
   }
 
   function handleThrottleChange(event) {
     setThrottle(parseInt(event.target.value));
-    startSimulation();
+
   }
 
   function handlePressureChange(event) {
     setPressure(parseInt(event.target.value));
-    startSimulation();
+
   }
 
   return {
@@ -64,6 +64,13 @@ function TrainSimulator() {
   function stopSimulationHandler() {
     stopSimulation();
   }
+
+  React.useEffect(() => {
+    if (intervalId) {
+      const simulationData = { speed, throttle, pressure };
+      console.log(simulationData);
+    }
+  }, [speed, throttle, pressure, intervalId]);
 
   return (
     <div>
