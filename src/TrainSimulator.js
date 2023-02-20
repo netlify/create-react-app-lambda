@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Slider } from 'react-bootstrap';
 
 function TrainSimulator() {
   const [isPlaying, setIsPlaying] = useState(false);
