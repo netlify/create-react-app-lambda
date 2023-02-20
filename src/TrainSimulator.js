@@ -1,76 +1,37 @@
 import React, { useState } from 'react';
 
-function useSimulation() {
-  const [speed, setSpeed] = useState(0);
-  const [throttle, setThrottle] = useState(0);
-  const [pressure, setPressure] = useState(0);
+const Simulator = () => {
+  const [sliderValues, setSliderValues] = useState({
+    speed: 0,
+    throttle: 0,
+    pressure: 0
+  });
+
   const [intervalId, setIntervalId] = useState(null);
 
-  function startSimulation() {
-    const newIntervalId = setInterval(() => {
-      const simulationData = { speed, throttle, pressure };
-      console.log(simulationData);
-    }, 1000);
+  const getSliderValues = () => {
+    const newValues = { ...sliderValues };
+    for (const key in sliderValues) {
+      if (sliderValues.hasOwnProperty(key)) {
+        newValues[key] = document.getElementById(key).value;
+      }
+    }
+    setSliderValues(newValues);
+    console.log(newValues);
+  };
 
-    setIntervalId(newIntervalId);
-  }
+  const startSimulation = () => {
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+    }
+    const id = setInterval(getSliderValues, 1000);
+    setIntervalId(id);
+  };
 
-  function stopSimulation() {
+  const stopSimulation = () => {
     clearInterval(intervalId);
     setIntervalId(null);
-  }
-
-  function handleSpeedChange(event) {
-    setSpeed(parseInt(event.target.value));
- 
-  }
-
-  function handleThrottleChange(event) {
-    setThrottle(parseInt(event.target.value));
-
-  }
-
-  function handlePressureChange(event) {
-    setPressure(parseInt(event.target.value));
-
-  }
-
-  return {
-    speed,
-    throttle,
-    pressure,
-    intervalId,
-    startSimulation,
-    stopSimulation,
-    handleSpeedChange,
-    handleThrottleChange,
-    handlePressureChange,
   };
-}
-
-function TrainSimulator() {
-  const {
-    speed,
-    throttle,
-    pressure,
-    intervalId,
-    startSimulation,
-    stopSimulation,
-    handleSpeedChange,
-    handleThrottleChange,
-    handlePressureChange,
-  } = useSimulation();
-
-  function stopSimulationHandler() {
-    stopSimulation();
-  }
-
-  React.useEffect(() => {
-    if (intervalId) {
-      const simulationData = { speed, throttle, pressure };
-      console.log(simulationData);
-    }
-  }, [speed, throttle, pressure, intervalId]);
 
   return (
     <div>
