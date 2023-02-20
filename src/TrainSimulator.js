@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 function TrainSimulator() {
-  const [speed, setSpeed] = useState(0);
-  const [throttle, setThrottle] = useState(0);
-  const [pressure, setPressure] = useState(0);
+
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
 
