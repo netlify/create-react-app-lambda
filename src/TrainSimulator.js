@@ -16,13 +16,13 @@ function TrainSimulator() {
       console.log(simulationData);
     }, 1000);
   
+    function stopSimulation() {
+      clearInterval(intervalId);
+    }
     
   }
   
-  function stopSimulation() {
-    clearInterval(intervalId);
-  }
-  
+
   
   return (
     <div className="container">
@@ -80,7 +80,7 @@ function TrainSimulator() {
         <div className="col-4 offset-4">
           <div className="btn-group btn-block" role="group" aria-label="Play and Stop buttons">
             <button type="button" className="btn btn-success" onClick={startSimulation}>Play</button>
-            <button type="button" className="btn btn-fail" onClick={stopSimulation}>Stop</button>
+            
             </div>
             </div>
             </div>
