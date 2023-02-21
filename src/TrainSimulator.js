@@ -15,14 +15,16 @@ function TrainSimulator() {
         const logElement = document.createElement('div');
         logElement.innerText = JSON.stringify({ speed, throttle, pressure });
         logRef.current.appendChild(logElement);
-        logRef.scrollTop = logRef.scrollHeight;
+        if (logRef.current) {
+          logRef.current.scrollTop = logRef.current.scrollHeight;
+        }
 
       }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
 
-    
+
 
     
     return () => {
