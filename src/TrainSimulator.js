@@ -6,16 +6,35 @@ function TrainSimulator() {
   const [pressure, setPressure] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
+  const logRef = useRef(null);
 
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
-        console.log({ speed, throttle, pressure });
-      }, 100);
+        //console.log({ speed, throttle, pressure });
+        const logElement = document.createElement('div');
+        logElement.innerText = JSON.stringify(data);
+        logRef.current.appendChild(logElement);
+
+      }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
 
+    
+
+    const startSimulation = () => {
+      setIsRunning(true);
+      intervalRef.current = setInterval(() => {
+        const data = { speed, throttle, pressure };
+        const logElement = document.createElement('div');
+        logElement.innerText = JSON.stringify(data);
+        logRef.current.appendChild(logElement);
+      }, 1000);
+    };
+
+
+    
     return () => {
       clearInterval(intervalRef.current);
     };
@@ -44,6 +63,8 @@ function TrainSimulator() {
 
   return (
     <div>
+    <div style={{ maxHeight: '200px', overflowY: 'auto', marginTop: '20px' }} ref={logRef} />
+
       <div>
         <label htmlFor="speed">Speed:</label>
         <input
