@@ -13,7 +13,7 @@ function TrainSimulator() {
       intervalRef.current = setInterval(() => {
         //console.log({ speed, throttle, pressure });
         const logElement = document.createElement('div');
-        logElement.innerText = JSON.stringify(data);
+        logElement.innerText = JSON.stringify({ speed, throttle, pressure });
         logRef.current.appendChild(logElement);
 
       }, 1000);
