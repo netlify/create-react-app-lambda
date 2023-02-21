@@ -23,17 +23,6 @@ function TrainSimulator() {
 
     
 
-    const startSimulation = () => {
-      setIsRunning(true);
-      intervalRef.current = setInterval(() => {
-        const data = { speed, throttle, pressure };
-        const logElement = document.createElement('div');
-        logElement.innerText = JSON.stringify(data);
-        logRef.current.appendChild(logElement);
-      }, 1000);
-    };
-
-
     
     return () => {
       clearInterval(intervalRef.current);
