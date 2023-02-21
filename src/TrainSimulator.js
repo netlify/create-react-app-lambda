@@ -15,6 +15,7 @@ function TrainSimulator() {
         const logElement = document.createElement('div');
         logElement.innerText = JSON.stringify({ speed, throttle, pressure });
         logRef.current.appendChild(logElement);
+        logRef.scrollTop = logRef.scrollHeight;
 
       }, 1000);
     } else {
